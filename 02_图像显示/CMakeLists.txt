@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
 project (ShowImage)
 
+set(CMAKE_PREFIX_PATH /opt/ros/kinetic/share/OpenCV-3.2.0-dev/)
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
