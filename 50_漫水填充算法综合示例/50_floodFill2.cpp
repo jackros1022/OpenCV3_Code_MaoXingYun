@@ -1,18 +1,3 @@
-
-//--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序50
-//		程序描述：漫水填充算法综合示例
-//		开发测试所用操作系统： Windows 7 64bit
-//		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
-//		2014年11月 Revised by @浅墨_毛星云
-//------------------------------------------------------------------------------------------------
-
-
-//---------------------------------【头文件、命名空间包含部分】----------------------------
-//		描述：包含程序所使用的头文件和命名空间
-//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <iostream>
@@ -124,7 +109,7 @@ int main( int argc, char** argv )
 	ShowHelpText();
 
 	g_srcImage.copyTo(g_dstImage);//拷贝源图到目标图
-	cvtColor(g_srcImage, g_grayImage, COLOR_BGR2GRAY);//转换三通道的image0到灰度图
+	cvtColor(g_srcImage, g_grayImage, COLOR_BGR2GRAY);
 	g_maskImage.create(g_srcImage.rows+2, g_srcImage.cols+2, CV_8UC1);//利用image0的尺寸来初始化掩膜mask
 
 	namedWindow( "效果图",CV_WINDOW_AUTOSIZE );
