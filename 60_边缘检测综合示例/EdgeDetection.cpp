@@ -1,4 +1,4 @@
-//		程序描述：边缘检测综合示例——Canny算子,Sobel算子,Laplace算子,Scharr滤波器合辑
+//程序描述：边缘检测综合示例——Canny算子,Sobel算子,Laplace算子,Scharr滤波器合辑
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
