@@ -1,12 +1,12 @@
 
 //--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序58
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序58
 //		程序描述：Laplacian函数用法示例
 //		开发测试所用操作系统： Windows 7 64bit
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
-//		2014年11月 Revised by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
@@ -37,7 +37,7 @@ int main( )
 	GaussianBlur( src, src, Size(3,3), 0, 0, BORDER_DEFAULT );
 
 	//【4】转换为灰度图
-	cvtColor( src, src_gray, CV_RGB2GRAY );
+	cvtColor( src, src_gray, COLOR_RGB2GRAY );
 
 	//【5】使用Laplace函数
 	Laplacian( src_gray, dst, CV_16S, 3, 1, 0, BORDER_DEFAULT );

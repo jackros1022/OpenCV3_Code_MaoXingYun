@@ -1,8 +1,24 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序69
+//		程序描述：基础轮廓查找——findContours+drawContours
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
-
+using namespace std;
 
 //-----------------------------------【main( )函数】--------------------------------------------
 
@@ -26,15 +42,20 @@ int main( int argc, char** argv )
 	vector<Vec4i> hierarchy;
 
 	//【5】查找轮廓
-	findContours( srcImage, contours, hierarchy,
-		CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+	//此句代码的OpenCV2版为：
+	//findContours( srcImage, contours, hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+	//此句代码的OpenCV3版为：
+	findContours( srcImage, contours, hierarchy,RETR_CCOMP, CHAIN_APPROX_SIMPLE );
 
 	// 【6】遍历所有顶层的轮廓， 以随机颜色绘制出每个连接组件颜色
 	int index = 0;
 	for( ; index >= 0; index = hierarchy[index][0] )
 	{
 		Scalar color( rand()&255, rand()&255, rand()&255 );
-		drawContours( dstImage, contours, index, color, CV_FILLED, 8, hierarchy );
+		//此句代码的OpenCV2版为：
+		//drawContours( dstImage, contours, index, color, CV_FILLED, 8, hierarchy );
+		//此句代码的OpenCV3版为：
+		drawContours( dstImage, contours, index, color, FILLED, 8, hierarchy );
 	}
 
 	//【7】显示最后的轮廓图

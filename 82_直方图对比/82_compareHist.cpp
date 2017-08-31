@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序82
+//		程序描述：直方图对比
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
@@ -10,7 +25,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第82个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第82个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 	//输出一些帮助信息
@@ -46,9 +61,9 @@ int main( )
 	imshow("测试图像2",srcImage_test2);
 
 	// 【3】将图像由BGR色彩空间转换到 HSV色彩空间
-	cvtColor( srcImage_base, hsvImage_base, CV_BGR2HSV );
-	cvtColor( srcImage_test1, hsvImage_test1, CV_BGR2HSV );
-	cvtColor( srcImage_test2, hsvImage_test2, CV_BGR2HSV );
+	cvtColor( srcImage_base, hsvImage_base,  COLOR_BGR2HSV );
+	cvtColor( srcImage_test1, hsvImage_test1, COLOR_BGR2HSV );
+	cvtColor( srcImage_test2, hsvImage_test2, COLOR_BGR2HSV );
 
 	//【4】创建包含基准图像下半部的半身图像(HSV格式)
 	hsvImage_halfDown = hsvImage_base( Range( hsvImage_base.rows/2, hsvImage_base.rows - 1 ), Range( 0, hsvImage_base.cols - 1 ) );
@@ -93,7 +108,6 @@ int main( )
 		double base_half = compareHist( baseHist, halfDownHist, compare_method );
 		double base_test1 = compareHist( baseHist, testHist1, compare_method );
 		double base_test2 = compareHist( baseHist, testHist2, compare_method );
-
 		//输出结果
 		printf( " 方法 [%d] 的匹配结果如下：\n\n 【基准图 - 基准图】：%f, 【基准图 - 半身图】：%f,【基准图 - 测试图1】： %f, 【基准图 - 测试图2】：%f \n-----------------------------------------------------------------\n", i, base_base, base_half , base_test1, base_test2 );
 	}

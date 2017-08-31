@@ -1,3 +1,18 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序50
+//		程序描述：漫水填充算法综合示例
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <iostream>
@@ -24,7 +39,7 @@ static void ShowHelpText()
 {  
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第50个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第50个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
@@ -52,15 +67,22 @@ static void ShowHelpText()
 static void onMouse( int event, int x, int y, int, void* )
 {
 	// 若鼠标左键没有按下，便返回
-	if( event != CV_EVENT_LBUTTONDOWN )
+	//此句代码的OpenCV2版为：
+	//if( event != CV_EVENT_LBUTTONDOWN )
+	//此句代码的OpenCV3版为：
+	if( event != EVENT_LBUTTONDOWN )
 		return;
 
 	//-------------------【<1>调用floodFill函数之前的参数准备部分】---------------
 	Point seed = Point(x,y);
 	int LowDifference = g_nFillMode == 0 ? 0 : g_nLowDifference;//空范围的漫水填充，此值设为0，否则设为全局的g_nLowDifference
 	int UpDifference = g_nFillMode == 0 ? 0 : g_nUpDifference;//空范围的漫水填充，此值设为0，否则设为全局的g_nUpDifference
-	int flags = g_nConnectivity + (g_nNewMaskVal << 8) +
-		(g_nFillMode == 1 ? CV_FLOODFILL_FIXED_RANGE : 0);//标识符的0~7位为g_nConnectivity，8~15位为g_nNewMaskVal左移8位的值，16~23位为CV_FLOODFILL_FIXED_RANGE或者0。
+
+	//标识符的0~7位为g_nConnectivity，8~15位为g_nNewMaskVal左移8位的值，16~23位为CV_FLOODFILL_FIXED_RANGE或者0。
+	//此句代码的OpenCV2版为：
+	//int flags = g_nConnectivity + (g_nNewMaskVal << 8) +(g_nFillMode == 1 ? CV_FLOODFILL_FIXED_RANGE : 0);
+	//此句代码的OpenCV3版为：
+	int flags = g_nConnectivity + (g_nNewMaskVal << 8) +(g_nFillMode == 1 ? FLOODFILL_FIXED_RANGE : 0);
 
 	//随机生成bgr值
 	int b = (unsigned)theRNG() & 255;//随机返回一个0~255之间的值
@@ -76,7 +98,10 @@ static void onMouse( int event, int x, int y, int, void* )
 	//--------------------【<2>正式调用floodFill函数】-----------------------------
 	if( g_bUseMask )
 	{
-		threshold(g_maskImage, g_maskImage, 1, 128, CV_THRESH_BINARY);
+		//此句代码的OpenCV2版为：
+		//threshold(g_maskImage, g_maskImage, 1, 128, CV_THRESH_BINARY);
+		//此句代码的OpenCV3版为：
+		threshold(g_maskImage, g_maskImage, 1, 128, THRESH_BINARY);
 		area = floodFill(dst, g_maskImage, seed, newVal, &ccomp, Scalar(LowDifference, LowDifference, LowDifference),
 			Scalar(UpDifference, UpDifference, UpDifference), flags);
 		imshow( "mask", g_maskImage );
@@ -103,16 +128,20 @@ int main( int argc, char** argv )
 	//载入原图
 	g_srcImage = imread("1.jpg", 1);
 
-	if( !g_srcImage.data ) { printf("Oh，no，读取图片image0错误~！ \n"); return false; }  
+	if( !g_srcImage.data ) { printf("读取图片image0错误~！ \n"); return false; }  
 
 	//显示帮助文字
 	ShowHelpText();
 
 	g_srcImage.copyTo(g_dstImage);//拷贝源图到目标图
-	cvtColor(g_srcImage, g_grayImage, COLOR_BGR2GRAY);
+	cvtColor(g_srcImage, g_grayImage, COLOR_BGR2GRAY);//转换三通道的image0到灰度图
 	g_maskImage.create(g_srcImage.rows+2, g_srcImage.cols+2, CV_8UC1);//利用image0的尺寸来初始化掩膜mask
 
-	namedWindow( "效果图",CV_WINDOW_AUTOSIZE );
+	//此句代码的OpenCV2版为：
+	//namedWindow( "效果图",CV_WINDOW_AUTOSIZE );
+	//此句代码的OpenCV2版为：
+	namedWindow( "效果图",WINDOW_AUTOSIZE );
+
 
 	//创建Trackbar
 	createTrackbar( "负差最大值", "效果图", &g_nLowDifference, 255, 0 );

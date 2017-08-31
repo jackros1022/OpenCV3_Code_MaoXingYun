@@ -1,3 +1,12 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序11
+//		程序描述：来自OpenCV安装目录下Samples文件夹中的官方示例程序-人脸识别
+//		测试所用操作系统： Windows 7 64bit
+//		测试所用IDE版本：Visual Studio 2010
+//		测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
 
 /**
  * @file ObjectDetection.cpp
@@ -42,7 +51,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	cout <<"\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n"
-		<<"\n\n\t\t\t此为本书OpenCV2版的第11个配套示例程序\n"
+		<<"\n\n\t\t\t此为本书OpenCV3版的第11个配套示例程序\n"
 		<<	"\n\n\t\t\t   当前使用的OpenCV版本为：" << CV_VERSION 
 		<<"\n\n  ----------------------------------------------------------------------------" ;
 }
@@ -92,8 +101,13 @@ void detectAndDisplay( Mat frame )
 
    cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
    equalizeHist( frame_gray, frame_gray );
+
    //-- 人脸检测
-   face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+   //此句代码的OpenCV2版为：
+  //face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+   //此句代码的OpenCV3版为：
+   face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
+
 
    for( size_t i = 0; i < faces.size(); i++ )
     {
@@ -104,7 +118,10 @@ void detectAndDisplay( Mat frame )
       std::vector<Rect> eyes;
 
       //-- 在脸中检测眼睛
-      eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+	  //此句代码的OpenCV2版为：
+     // eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+	  //此句代码的OpenCV3版为：
+	  eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 
       for( size_t j = 0; j < eyes.size(); j++ )
        {

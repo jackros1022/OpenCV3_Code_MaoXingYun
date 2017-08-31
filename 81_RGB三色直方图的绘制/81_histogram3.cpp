@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序81
+//		程序描述：绘制RGB三色分量的直方图
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>  
 #include <opencv2/imgproc/imgproc.hpp>  
 using namespace cv;  
@@ -11,7 +26,7 @@ void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第81个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第81个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
@@ -82,17 +97,17 @@ int main(  )
 		//绘制红色分量的直方图
 		rectangle(histImage,Point(i*scale,histHeight-1),
 			Point((i+1)*scale - 1, histHeight - intensity_red),
-			CV_RGB(255,0,0));
+			Scalar(255,0,0));
 
 		//绘制绿色分量的直方图
 		rectangle(histImage,Point((i+bins)*scale,histHeight-1),
 			Point((i+bins+1)*scale - 1, histHeight - intensity_green),
-			CV_RGB(0,255,0));
+			Scalar(0,255,0));
 
 		//绘制蓝色分量的直方图
 		rectangle(histImage,Point((i+bins*2)*scale,histHeight-1),
 			Point((i+bins*2+1)*scale - 1, histHeight - intensity_blue),
-			CV_RGB(0,0,255));
+			Scalar(0,0,255));
 
 	}
 

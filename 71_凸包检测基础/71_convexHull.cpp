@@ -1,8 +1,24 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序71
+//		程序描述：凸包检测基础
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <iostream>
 using namespace cv;
-
+using namespace std;
 
 //-----------------------------------【ShowHelpText( )函数】----------------------------------
 //          描述：输出一些帮助信息
@@ -11,7 +27,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第71个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第71个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 	//输出一些帮助信息
@@ -63,7 +79,7 @@ int main( )
 		//绘制出随机颜色的点
 		image = Scalar::all(0);
 		for(int i = 0; i < count; i++ )
-			circle(image, points[i], 3, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), CV_FILLED, CV_AA);
+			circle(image, points[i], 3, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), FILLED, LINE_AA);
 
 		//准备参数
 		int hullcount = (int)hull.size();//凸包的边数
@@ -73,7 +89,7 @@ int main( )
 		for(int  i = 0; i < hullcount; i++ )
 		{
 			Point point = points[hull[i]];
-			line(image, point0, point, Scalar(255, 255, 255), 2, CV_AA);
+			line(image, point0, point, Scalar(255, 255, 255), 2, LINE_AA);
 			point0 = point;
 		}
 

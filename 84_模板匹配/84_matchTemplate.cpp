@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序84
+//		程序描述：模板匹配示例
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
@@ -39,8 +54,8 @@ int main(  )
 	g_templateImage = imread( "2.jpg", 1 );
 
 	//【2】创建窗口
-	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
-	namedWindow( WINDOW_NAME2, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME1, WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME2, WINDOW_AUTOSIZE );
 
 	//【3】创建滑动条并进行一次初始化
 	createTrackbar( "方法", WINDOW_NAME1, &g_nMatchMethod, g_nMaxTrackbarNum, on_Matching );
@@ -61,9 +76,9 @@ void on_Matching( int, void* )
 	g_srcImage.copyTo( srcImage );
 
 	//【2】初始化用于结果输出的矩阵
-	int resultImage_cols =  g_srcImage.cols - g_templateImage.cols + 1;
 	int resultImage_rows = g_srcImage.rows - g_templateImage.rows + 1;
-	g_resultImage.create( resultImage_cols, resultImage_rows, CV_32FC1 );
+	int resultImage_cols =  g_srcImage.cols - g_templateImage.cols + 1;
+	g_resultImage.create(resultImage_rows,resultImage_cols, CV_32FC1);
 
 	//【3】进行匹配和标准化
 	matchTemplate( g_srcImage, g_templateImage, g_resultImage, g_nMatchMethod );
@@ -75,7 +90,10 @@ void on_Matching( int, void* )
 	minMaxLoc( g_resultImage, &minValue, &maxValue, &minLocation, &maxLocation, Mat() );
 
 	//【5】对于方法 SQDIFF 和 SQDIFF_NORMED, 越小的数值有着更高的匹配结果. 而其余的方法, 数值越大匹配效果越好
-	if( g_nMatchMethod  == CV_TM_SQDIFF || g_nMatchMethod == CV_TM_SQDIFF_NORMED )
+	//此句代码的OpenCV2版为：
+	//if( g_nMatchMethod  == CV_TM_SQDIFF || g_nMatchMethod == CV_TM_SQDIFF_NORMED )
+	//此句代码的OpenCV3版为：
+	if( g_nMatchMethod  == TM_SQDIFF || g_nMatchMethod == TM_SQDIFF_NORMED )
 	{ matchLocation = minLocation; }
 	else
 	{ matchLocation = maxLocation; }
@@ -98,7 +116,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第84个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第84个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 	//输出一些帮助信息

@@ -16,7 +16,7 @@
 #include <opencv2/highgui/highgui.hpp>
 using namespace cv;
 
-//OpenCV3需加入头文件：
+//此程序对于OpenCV3版需要额外包含头文件：
 #include <opencv2/imgproc/imgproc.hpp>
 
 
@@ -45,7 +45,6 @@ void DrawLine( Mat img, Point start, Point end );//绘制线段
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	system("color 5F");
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
 	printf("\n\n\t\t\t此为本书OpenCV3版的第20个配套示例程序\n");

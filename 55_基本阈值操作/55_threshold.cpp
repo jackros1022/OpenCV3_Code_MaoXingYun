@@ -1,3 +1,19 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序55
+//		程序描述：OpenCV基本阈值操作
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <iostream>
@@ -41,10 +57,10 @@ int main( )
 	imshow("原始图",g_srcImage);
 
 	//【2】存留一份原图的灰度图
-	cvtColor( g_srcImage, g_grayImage, CV_RGB2GRAY );
+	cvtColor( g_srcImage, g_grayImage, COLOR_RGB2GRAY );
 
 	//【3】创建窗口并显示原始图
-	namedWindow( WINDOW_NAME, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME, WINDOW_AUTOSIZE );
 
 	//【4】创建滑动条来控制阈值
 	createTrackbar( "模式",
@@ -87,7 +103,7 @@ static void ShowHelpText()
 {  
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第55个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第55个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 

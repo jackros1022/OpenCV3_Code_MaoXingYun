@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序78
+//		程序描述：图像修补示例
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/photo/photo.hpp"
@@ -28,7 +43,7 @@ static void ShowHelpText( )
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第78个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第78个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
@@ -48,13 +63,13 @@ static void ShowHelpText( )
 static void On_Mouse( int event, int x, int y, int flags, void* )
 {
 	//鼠标左键弹起消息
-	if( event == CV_EVENT_LBUTTONUP || !(flags & CV_EVENT_FLAG_LBUTTON) )
+	if( event == EVENT_LBUTTONUP || !(flags & EVENT_FLAG_LBUTTON) )
 		previousPoint = Point(-1,-1);
 	//鼠标左键按下消息
-	else if( event == CV_EVENT_LBUTTONDOWN )
+	else if( event == EVENT_LBUTTONDOWN )
 		previousPoint = Point(x,y);
 	//鼠标按下并移动，进行绘制
-	else if( event == CV_EVENT_MOUSEMOVE && (flags & CV_EVENT_FLAG_LBUTTON) )
+	else if( event == EVENT_MOUSEMOVE && (flags & EVENT_FLAG_LBUTTON) )
 	{
 		Point pt(x,y);
 		if( previousPoint.x < 0 )
@@ -115,7 +130,7 @@ int main( int argc, char** argv )
 		if( c == '1' || c == ' ' )
 		{
 			Mat inpaintedImage;
-			inpaint(srcImage1, inpaintMask, inpaintedImage, 3, CV_INPAINT_TELEA);
+			inpaint(srcImage1, inpaintMask, inpaintedImage, 3, INPAINT_TELEA);
 			imshow(WINDOW_NAME2, inpaintedImage);
 		}
 	}

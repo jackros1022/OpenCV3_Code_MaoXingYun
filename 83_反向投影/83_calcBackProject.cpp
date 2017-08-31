@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序83
+//		程序描述：反向投影示例程序
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 using namespace cv;
@@ -35,7 +50,7 @@ int main( )
 	//【1】读取源图像，并转换到 HSV 空间
 	g_srcImage = imread( "1.jpg", 1 );
 	if(!g_srcImage.data ) { printf("读取图片错误，请确定目录下是否有imread函数指定图片存在~！ \n"); return false; } 
-	cvtColor( g_srcImage, g_hsvImage, CV_BGR2HSV );
+	cvtColor( g_srcImage, g_hsvImage, COLOR_BGR2HSV );
 
 	//【2】分离 Hue 色调通道
 	g_hueImage.create( g_hsvImage.size(), g_hsvImage.depth() );
@@ -43,7 +58,7 @@ int main( )
 	mixChannels( &g_hsvImage, 1, &g_hueImage, 1, ch, 1 );
 
 	//【3】创建 Trackbar 来输入bin的数目
-	namedWindow( WINDOW_NAME1 , CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME1 , WINDOW_AUTOSIZE );
 	createTrackbar("色调组距 ", WINDOW_NAME1 , &g_bins, 180, on_BinChange );
 	on_BinChange(0, 0);//进行一次初始化
 
@@ -99,7 +114,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第83个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第83个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 

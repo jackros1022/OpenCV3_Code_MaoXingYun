@@ -1,6 +1,6 @@
 %YAML:1.0
 frameCount: 5
-calibrationDate: "Sat Nov 29 15:34:46 2014\n"
+calibrationDate: "Sat Dec 06 21:27:37 2014\n"
 cameraMatrix: !!opencv-matrix
    rows: 3
    cols: 3

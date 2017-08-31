@@ -1,4 +1,13 @@
 
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序10
+//		程序描述：来自OpenCV安装目录下Samples文件夹中的官方示例程序-点追踪技术演示
+//		测试所用操作系统： Windows 7 64bit
+//		测试所用IDE版本：Visual Studio 2010
+//		测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
 //---------------------------------【头文件、命名空间包含部分】----------------------------
 //		描述：包含程序所使用的头文件和命名空间
 //-------------------------------------------------------------------------------------------------
@@ -21,7 +30,7 @@ static void help()
 {
 	//输出欢迎信息和OpenCV版本
 	cout <<"\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n"
-		<<"\n\n\t\t\t此为本书OpenCV2版的第10个配套示例程序\n"
+		<<"\n\n\t\t\t此为本书OpenCV3版的第10个配套示例程序\n"
 		<<	"\n\n\t\t\t   当前使用的OpenCV版本为：" << CV_VERSION 
 		<<"\n\n  ----------------------------------------------------------------------------" ;
 	cout	<< "\n\n\t该Demo演示了 Lukas-Kanade基于光流的lkdemo\n";
@@ -42,7 +51,10 @@ bool addRemovePt = false;
 //-------------------------------------------------------------------------------------------------
 static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ )
 {
-	if( event == CV_EVENT_LBUTTONDOWN )
+	//此句代码的OpenCV2版为：
+	//if( event == CV_EVENT_LBUTTONDOWN )
+	//此句代码的OpenCV3版为：
+	if( event == EVENT_LBUTTONDOWN )
 	{
 		point = Point2f((float)x, (float)y);
 		addRemovePt = true;
@@ -57,12 +69,17 @@ int main( int argc, char** argv )
 	help();
 
 	VideoCapture cap;
-	TermCriteria termcrit(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS, 20, 0.03);
+
+	//此句代码的OpenCV2版为：
+	//TermCriteria termcrit(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS, 20, 0.03);
+	//此句代码的OpenCV3版为：
+	TermCriteria termcrit(TermCriteria::MAX_ITER|TermCriteria::EPS, 20, 0.03);
 	Size subPixWinSize(10,10), winSize(31,31);
 
 	const int MAX_COUNT = 500;
 	bool needToInit = false;
 	bool nightMode = false;
+
 
 	cap.open(0);
 
@@ -131,7 +148,11 @@ int main( int argc, char** argv )
 		{
 			vector<Point2f> tmp;
 			tmp.push_back(point);
-			cornerSubPix( gray, tmp, winSize, cvSize(-1,-1), termcrit);
+
+			//此句代码的OpenCV2版为：
+			//cornerSubPix( gray, tmp, winSize, cvSize(-1,-1), termcrit);
+			//此句代码的OpenCV3版为：
+			cornerSubPix( gray, tmp, winSize, Size(-1,-1), termcrit);
 			points[1].push_back(tmp[0]);
 			addRemovePt = false;
 		}

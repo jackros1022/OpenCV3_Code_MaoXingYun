@@ -1,10 +1,10 @@
 //--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序05
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序05
 //		程序描述：使用canny函数进行灰度边缘检测
 //		开发测试所用操作系统： Windows 7 64bit
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年03月 Created by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
 //		2014年11月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
 
@@ -29,7 +29,10 @@ int main( )
 	dstImage.create( srcImage.size(), srcImage.type() );
 
 	//【2】将原图像转换为灰度图像
-	cvtColor( srcImage, grayImage, CV_BGR2GRAY );
+	//此句代码的OpenCV2版为：
+	//cvtColor( srcImage, grayImage, CV_BGR2GRAY );
+	//此句代码的OpenCV3版为：
+	cvtColor( srcImage, grayImage, COLOR_BGR2GRAY );
 
 	//【3】先用使用 3x3内核来降噪
 	blur( grayImage, edge, Size(3,3) );

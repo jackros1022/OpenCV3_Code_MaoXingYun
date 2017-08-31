@@ -2,9 +2,9 @@
 //		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序25
 //		程序描述：初级图像混合
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
-//		2014年11月 Revised by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
@@ -38,7 +38,7 @@ int main(   )
 
 	if(ROI_AddImage( )&& LinearBlending( )&&ROI_LinearBlending( ))
 	{
-		cout<<endl<<"\n运行成功，得出了需要的图像~! ";
+		cout<<endl<<"\n运行成功，得出了需要的图像";
 	}
 
 	waitKey(0);
@@ -53,7 +53,7 @@ void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第25个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第25个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }

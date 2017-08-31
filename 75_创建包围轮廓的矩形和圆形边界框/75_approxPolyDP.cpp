@@ -1,10 +1,23 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序75
+//		程序描述：创建轮廓边界框
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-
-//-----------------------------------【命名空间声明部分】--------------------------------------
-//          描述：包含程序所使用的命名空间
-//-----------------------------------------------------------------------------------------------
 using namespace cv;
+using namespace std;
 
 //-----------------------------------【宏定义部分】-------------------------------------------- 
 //  描述：定义一些辅助宏 
@@ -43,11 +56,11 @@ int main( )
 	if(!g_srcImage.data ) { printf("读取图片错误，请确定目录下是否有imread函数指定的图片存在~！ \n"); return false; }  
 
 	//【2】得到原图的灰度图像并进行平滑
-	cvtColor( g_srcImage, g_grayImage, CV_BGR2GRAY );
+	cvtColor( g_srcImage, g_grayImage, COLOR_BGR2GRAY );
 	blur( g_grayImage, g_grayImage, Size(3,3) );
 
 	//【3】创建原始图窗口并显示
-	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME1, WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME1, g_srcImage );
 
 	//【4】设置滚动条并调用一次回调函数
@@ -73,7 +86,7 @@ void on_ContoursChange(int, void* )
 	threshold( g_grayImage, threshold_output, g_nThresh, 255, THRESH_BINARY );
 
 	// 找出轮廓
-	findContours( threshold_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+	findContours( threshold_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0) );
 
 	// 多边形逼近轮廓 + 获取矩形和圆形边界框
 	vector<vector<Point> > contours_poly( contours.size() );
@@ -100,7 +113,7 @@ void on_ContoursChange(int, void* )
 	}
 
 	// 显示效果图窗口
-	namedWindow( WINDOW_NAME2, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME2, WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME2, drawing );
 }
 
@@ -111,7 +124,7 @@ static void ShowHelpText()
 {  
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第75个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第75个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 

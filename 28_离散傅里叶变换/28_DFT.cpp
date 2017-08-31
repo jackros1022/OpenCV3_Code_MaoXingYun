@@ -2,9 +2,9 @@
 //		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序28
 //		程序描述：离散傅里叶变换
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
-//		2014年11月 Revised by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
@@ -26,7 +26,7 @@ void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第28个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第28个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
@@ -92,7 +92,10 @@ int main( )
 	tmp.copyTo(q2);
 
 	//【8】归一化，用0到1之间的浮点值将矩阵变换为可视的图像格式
-	normalize(magnitudeImage, magnitudeImage, 0, 1, CV_MINMAX); 
+	//此句代码的OpenCV2版为：
+	//normalize(magnitudeImage, magnitudeImage, 0, 1, CV_MINMAX); 
+	//此句代码的OpenCV3版为:
+	normalize(magnitudeImage, magnitudeImage, 0, 1, NORM_MINMAX); 
 
 	//【9】显示效果图
 	imshow("频谱幅值", magnitudeImage);    

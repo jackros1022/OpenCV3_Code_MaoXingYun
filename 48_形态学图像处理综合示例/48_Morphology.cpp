@@ -1,3 +1,16 @@
+
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序48
+//		程序描述：形态学图像处理——开运算、闭运算、形态学梯度、顶帽、黑帽
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
 //---------------------------------【头文件、命名空间包含部分】----------------------------
 //		描述：包含程序所使用的头文件和命名空间
 //------------------------------------------------------------------------------------------------
@@ -110,9 +123,18 @@ static void on_OpenClose(int, void*)
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
 	//进行操作
 	if( offset < 0 )
-		morphologyEx(g_srcImage, g_dstImage, CV_MOP_OPEN, element);
+		//此句代码的OpenCV2版为：
+		//morphologyEx(g_srcImage, g_dstImage, CV_MOP_OPEN, element);
+		//此句代码的OpenCV3版为:
+		morphologyEx(g_srcImage, g_dstImage, MORPH_OPEN, element);
 	else
-		morphologyEx(g_srcImage, g_dstImage, CV_MOP_CLOSE, element);
+		//此句代码的OpenCV2版为：
+		//morphologyEx(g_srcImage, g_dstImage, CV_MOP_CLOSE, element);
+		//此句代码的OpenCV3版为:
+		morphologyEx(g_srcImage, g_dstImage, MORPH_CLOSE, element);
+		
+
+
 	//显示图像
 	imshow("【开运算/闭运算】",g_dstImage);
 }
@@ -164,7 +186,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第48个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第48个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 

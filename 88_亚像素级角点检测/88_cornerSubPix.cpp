@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序88
+//		程序描述：亚像素级角点检测
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
@@ -65,14 +80,17 @@ void on_GoodFeaturesToTrack( int, void* )
 	//【7】亚像素角点检测的参数设置
 	Size winSize = Size( 5, 5 );
 	Size zeroZone = Size( -1, -1 );
-	TermCriteria criteria = TermCriteria( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 40, 0.001 );
+	//此句代码的OpenCV2版为：
+	//TermCriteria criteria = TermCriteria( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 40, 0.001 );
+	//此句代码的OpenCV3版为：
+	TermCriteria criteria = TermCriteria( TermCriteria::EPS + TermCriteria::MAX_ITER, 40, 0.001 );
 
 	//【8】计算出亚像素角点位置
 	cornerSubPix( g_grayImage, corners, winSize, zeroZone, criteria );
 
 	//【9】输出角点信息
 	for( int i = 0; i < corners.size(); i++ )
-	{ cout<<" \t>>精确角点坐标["<<i<<"]  ("<<corners[i].x<<","<<corners[i].y<<")"<<endl; }
+		{ cout<<" \t>>精确角点坐标["<<i<<"]  ("<<corners[i].x<<","<<corners[i].y<<")"<<endl; }
 
 
 }
@@ -108,10 +126,10 @@ int main(  )
 
 	//【1】载入源图像并将其转换为灰度图
 	g_srcImage = imread("1.jpg", 1 );
-	cvtColor( g_srcImage, g_grayImage, CV_BGR2GRAY );
+	cvtColor( g_srcImage, g_grayImage, COLOR_BGR2GRAY );
 
 	//【2】创建窗口和滑动条，并进行显示和回调函数初始化
-	namedWindow( WINDOW_NAME, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME, WINDOW_AUTOSIZE );
 	createTrackbar( "最大角点数", WINDOW_NAME, &g_maxCornerNumber, g_maxTrackbarNumber, on_GoodFeaturesToTrack );
 	imshow( WINDOW_NAME, g_srcImage );
 	on_GoodFeaturesToTrack( 0, 0 );

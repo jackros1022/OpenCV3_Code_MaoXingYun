@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序86
+//		程序描述：Harris角点检测
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	2.4.9
+//		2014年06月 Created by @浅墨_毛星云
+//		2014年11月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -43,10 +58,10 @@ int main( int argc, char** argv )
 	g_srcImage1=g_srcImage.clone( );
 
 	//【2】存留一张灰度图
-	cvtColor( g_srcImage1, g_grayImage, CV_BGR2GRAY );
+	cvtColor( g_srcImage1, g_grayImage, COLOR_BGR2GRAY );
 
 	//【3】创建窗口和滚动条
-	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
+	namedWindow( WINDOW_NAME1, WINDOW_AUTOSIZE );
 	createTrackbar( "阈值: ", WINDOW_NAME1, &thresh, max_thresh, on_CornerHarris );
 
 	//【4】调用一次回调函数，进行初始化
@@ -105,7 +120,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第86个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第86个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 	//输出一些帮助信息

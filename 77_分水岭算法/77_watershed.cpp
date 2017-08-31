@@ -1,3 +1,18 @@
+//--------------------------------------【程序说明】-------------------------------------------
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序77
+//		程序描述：分水岭算法综合示例
+//		开发测试所用操作系统： Windows 7 64bit
+//		开发测试所用IDE版本：Visual Studio 2010
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
+//------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------【头文件、命名空间包含部分】----------------------------
+//		描述：包含程序所使用的头文件和命名空间
+//------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <iostream>
@@ -73,7 +88,7 @@ int main( int argc, char** argv )
 			vector<Vec4i> hierarchy;
 
 			//寻找轮廓
-			findContours(g_maskImage, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+			findContours(g_maskImage, contours, hierarchy, RETR_CCOMP, CHAIN_APPROX_SIMPLE);
 
 			//轮廓为空时的处理
 			if( contours.empty() )
@@ -142,13 +157,13 @@ static void on_Mouse( int event, int x, int y, int flags, void* )
 		return;
 
 	//处理鼠标左键相关消息
-	if( event == CV_EVENT_LBUTTONUP || !(flags & CV_EVENT_FLAG_LBUTTON) )
+	if( event == EVENT_LBUTTONUP || !(flags & EVENT_FLAG_LBUTTON) )
 		prevPt = Point(-1,-1);
-	else if( event == CV_EVENT_LBUTTONDOWN )
+	else if( event == EVENT_LBUTTONDOWN )
 		prevPt = Point(x,y);
 
 	//鼠标左键按下并移动，绘制出白色线条
-	else if( event == CV_EVENT_MOUSEMOVE && (flags & CV_EVENT_FLAG_LBUTTON) )
+	else if( event == EVENT_MOUSEMOVE && (flags & EVENT_FLAG_LBUTTON) )
 	{
 		Point pt(x, y);
 		if( prevPt.x < 0 )
@@ -168,7 +183,7 @@ static void ShowHelpText()
 {  
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第77个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第77个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 

@@ -1,11 +1,11 @@
 //--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序65
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序65
 //		程序描述：remap函数用法示例
 //		开发测试所用操作系统： Windows 7 64bit
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
-//		2014年11月 Revised by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
+//		2014年12月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
@@ -50,7 +50,10 @@ int main(  )
 	}
 
 	//【4】进行重映射操作
-	remap( srcImage, dstImage, map_x, map_y, CV_INTER_LINEAR, BORDER_CONSTANT, Scalar(0,0, 0) );
+	//此句代码的OpenCV2版为：
+	//remap( srcImage, dstImage, map_x, map_y, CV_INTER_LINEAR, BORDER_CONSTANT, Scalar(0,0, 0) );
+	//此句代码的OpenCV3版为：
+	remap( srcImage, dstImage, map_x, map_y, INTER_LINEAR, BORDER_CONSTANT, Scalar(0,0, 0) );
 
 	//【5】显示效果图
 	imshow( "【程序窗口】", dstImage );

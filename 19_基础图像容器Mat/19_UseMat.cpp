@@ -1,12 +1,13 @@
 //--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV2版书本配套示例程序19
+//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序19
 //		程序描述：基础图像容器Mat类的使用
 //		开发测试所用操作系统： Windows 7 64bit
 //		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	2.4.9
-//		2014年06月 Created by @浅墨_毛星云
+//		开发测试所用OpenCV版本：	3.0 beta
+//		2014年11月 Created by @浅墨_毛星云
 //		2014年12月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
+
 
 
 //---------------------------------【头文件、命名空间包含部分】---------------------------
@@ -27,7 +28,7 @@ static void ShowHelpText()
 {
 	//输出欢迎信息和OpenCV版本
 	printf("\n\n\t\t\t非常感谢购买《OpenCV3编程入门》一书！\n");
-	printf("\n\n\t\t\t此为本书OpenCV2版的第19个配套示例程序\n");
+	printf("\n\n\t\t\t此为本书OpenCV3版的第19个配套示例程序\n");
 	printf("\n\n\t\t\t   当前使用的OpenCV版本为：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
@@ -64,11 +65,19 @@ int main(int,char**)
 	Mat r = Mat(10, 3, CV_8UC3);
 	randu(r, Scalar::all(0), Scalar::all(255));
 
+	//此段代码的OpenCV2版为：
+	//cout << "r (OpenCV默认风格) = " << r << ";" << endl << endl;
+	//cout << "r (Python风格) = " << format(r,"python") << ";" << endl << endl;
+	//cout << "r (Numpy风格) = " << format(r,"numpy") << ";" << endl << endl;
+	//cout << "r (逗号分隔风格) = " << format(r,"csv") << ";" << endl<< endl;
+	//cout << "r (C语言风格) = " << format(r,"C") << ";" << endl << endl;
+	//此段代码的OpenCV3版为：
 	cout << "r (OpenCV默认风格) = " << r << ";" << endl << endl;
-	cout << "r (Python风格) = " << format(r,"python") << ";" << endl << endl;
-	cout << "r (Numpy风格) = " << format(r,"numpy") << ";" << endl << endl;
-	cout << "r (逗号分隔风格) = " << format(r,"csv") << ";" << endl<< endl;
-	cout << "r (C语言风格) = " << format(r,"C") << ";" << endl << endl;
+	cout << "r (Python风格) = " << format(r, Formatter::FMT_PYTHON) << ";" << endl << endl;
+	cout << "r (Numpy风格) = " <<  format(r, Formatter::FMT_NUMPY )<< ";" << endl << endl;
+	cout << "r (逗号分隔风格) = " << format(r, Formatter::FMT_CSV   )<< ";" << endl<< endl;
+	cout << "r (C语言风格) = " <<  format(r, Formatter::FMT_C     ) << ";" << endl << endl;
+
 
 	Point2f p(6, 2);
 	cout << "【2维点】p = " << p << ";\n" << endl;
