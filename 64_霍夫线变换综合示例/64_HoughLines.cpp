@@ -47,7 +47,7 @@ int main( )
 	ShowHelpText();
 
 	//载入原始图和Mat变量定义   
-	Mat g_srcImage = imread("1.jpg");  //工程目录下应该有一张名为1.jpg的素材图
+	Mat g_srcImage = imread("data/64.jpg");  
 
 	//显示原始图  
 	imshow("【原始图】", g_srcImage);  
@@ -57,12 +57,19 @@ int main( )
 	createTrackbar("值", "【效果图】",&g_nthreshold,200,on_HoughLines);
 
 	//进行边缘检测和转化为灰度图
-	Canny(g_srcImage, g_midImage, 50, 200, 3);//进行一次canny边缘检测
-	cvtColor(g_midImage,g_dstImage, COLOR_GRAY2BGR);//转化边缘检测后的图为灰度图
+	Canny(g_srcImage, g_midImage, 50, 200, 3);
+		//进行一次canny边缘检测
+		//1. 输出图像g_midImage，为1xUINT8
+	cvtColor(g_midImage,g_dstImage, COLOR_GRAY2BGR);
+		//转化边缘检测后的图为灰度图
+		//1. 输出图像g_dstImage，为3xUINT8
 
 	//调用一次回调函数，调用一次HoughLinesP函数
-	on_HoughLines(g_nthreshold,0);
+	on_HoughLines(g_nthreshold, 0);
 	HoughLinesP(g_midImage, g_lines, 1, CV_PI/180, 80, 50, 10 );
+		// 进行霍夫变换检测直线
+		//1. 输入参数g_midImage，必须为1xUINT8
+		//2. 参数80，阈值检测，大于该阈值才可以通过检测
 
 	//显示效果图  
 	imshow("【效果图】", g_dstImage);  

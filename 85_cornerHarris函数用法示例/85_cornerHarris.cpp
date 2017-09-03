@@ -29,7 +29,8 @@ int main()
 
 	//对灰度图进行阈值操作，得到二值图并显示  
 	Mat harrisCorner;  
-	threshold(cornerStrength, harrisCorner, 0.00001, 255, THRESH_BINARY);  
+	// 第三个参数，阈值为什么那么么小？？？
+	threshold(cornerStrength, harrisCorner, 0.00001, 255, THRESH_BINARY); 
 	imshow("角点检测后的二值效果图", harrisCorner);  
 
 	waitKey(0);  

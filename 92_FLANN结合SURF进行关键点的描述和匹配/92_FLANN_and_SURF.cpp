@@ -30,7 +30,7 @@ int main( )
 	void ShowHelpText();
 
 	//【1】载入图像、显示并转化为灰度图
-	Mat trainImage = imread("1.jpg"), trainImage_gray;
+	Mat trainImage = imread("1.bmp"), trainImage_gray;
 	imshow("原始图",trainImage);
 	cvtColor(trainImage, trainImage_gray, CV_BGR2GRAY);
 

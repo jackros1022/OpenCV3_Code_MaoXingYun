@@ -57,7 +57,7 @@ void on_GoodFeaturesToTrack( int, void* )
 		g_maxCornerNumber,//角点的最大数量
 		qualityLevel,//角点检测可接受的最小特征值
 		minDistance,//角点之间的最小距离
-		Mat(),//感兴趣区域
+		Mat(),//感兴趣区域	mask
 		blockSize,//计算导数自相关矩阵时指定的邻域范围
 		false,//不使用Harris角点检测
 		k );//权重系数

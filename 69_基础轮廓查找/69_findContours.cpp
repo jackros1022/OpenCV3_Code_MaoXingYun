@@ -27,14 +27,14 @@ using namespace std;
 int main( int argc, char** argv )
 {
 	// 【1】载入原始图，且必须以二值图模式载入
-	Mat srcImage=imread("1.jpg", 0);
+	Mat srcImage=imread("data/69.jpg", 0);
 	imshow("原始图",srcImage);
 
 	//【2】初始化结果图
 	Mat dstImage = Mat::zeros(srcImage.rows, srcImage.cols, CV_8UC3);
 
 	//【3】srcImage取大于阈值119的那部分
-	srcImage = srcImage > 119;
+	srcImage = srcImage > 128;
 	imshow( "取阈值后的原始图", srcImage );
 
 	//【4】定义轮廓和层次结构

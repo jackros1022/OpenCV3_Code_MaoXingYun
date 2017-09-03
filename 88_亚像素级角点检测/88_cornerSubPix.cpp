@@ -83,6 +83,7 @@ void on_GoodFeaturesToTrack( int, void* )
 	//此句代码的OpenCV2版为：
 	//TermCriteria criteria = TermCriteria( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 40, 0.001 );
 	//此句代码的OpenCV3版为：
+	// 模板类，作为迭代算法的终止条件
 	TermCriteria criteria = TermCriteria( TermCriteria::EPS + TermCriteria::MAX_ITER, 40, 0.001 );
 
 	//【8】计算出亚像素角点位置

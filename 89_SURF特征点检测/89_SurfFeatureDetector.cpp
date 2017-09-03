@@ -41,8 +41,8 @@ int main( int argc, char** argv )
 
 	//【4】绘制特征关键点.
 	Mat img_keypoints_1; Mat img_keypoints_2;
-	drawKeypoints( srcImage1, keypoints_1, img_keypoints_1, Scalar::all(-1), DrawMatchesFlags::DEFAULT );
-	drawKeypoints( srcImage2, keypoints_2, img_keypoints_2, Scalar::all(-1), DrawMatchesFlags::DEFAULT );
+	drawKeypoints( srcImage1, keypoints_1, img_keypoints_1, Scalar::all(-1), 0 );
+	drawKeypoints( srcImage2, keypoints_2, img_keypoints_2, Scalar::all(-1), 0 );
 
 	//【5】显示效果图
 	imshow("特征点检测效果图1", img_keypoints_1 );
