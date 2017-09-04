@@ -1,17 +1,3 @@
-
-//--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序38
-//		程序描述：图像膨胀dilate函数用法示例
-//		开发测试所用操作系统： Windows 7 64bit
-//		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	3.0 beta
-//		2014年11月 Created by @浅墨_毛星云
-//		2014年12月 Revised by @浅墨_毛星云
-//------------------------------------------------------------------------------------------------
-
-//-----------------------------------【头文件包含部分】---------------------------------------
-//	描述：包含程序所依赖的头文件
-//---------------------------------------------------------------------------------------------- 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -40,7 +26,7 @@ int main(   )
 	imshow("【原图】膨胀操作", image);
 
 	//进行膨胀操作 
-	Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));
+	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
 	Mat out;
 	dilate(image, out, element);
 

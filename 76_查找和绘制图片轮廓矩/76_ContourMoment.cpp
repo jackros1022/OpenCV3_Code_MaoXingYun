@@ -1,19 +1,3 @@
-
-//--------------------------------------【程序说明】-------------------------------------------
-//		程序说明：《OpenCV3编程入门》OpenCV3版书本配套示例程序76
-//		程序描述：查找和绘制图片轮廓矩
-//		开发测试所用操作系统： Windows 7 64bit
-//		开发测试所用IDE版本：Visual Studio 2010
-//		开发测试所用OpenCV版本：	3.0 beta
-//		2014年11月 Created by @浅墨_毛星云
-//		2014年12月 Revised by @浅墨_毛星云
-//------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------【头文件、命名空间包含部分】----------------------------
-//		描述：包含程序所使用的头文件和命名空间
-//------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
@@ -79,6 +63,7 @@ int main( int argc, char** argv )
 void on_ThreshChange(int, void* )
 {
 	// 使用Canndy检测边缘
+	//1.	g_nThresh阈值
 	Canny( g_grayImage, g_cannyMat_output, g_nThresh, g_nThresh*2, 3 );
 
 	// 找到轮廓
@@ -111,7 +96,8 @@ void on_ThreshChange(int, void* )
 	printf("\t 输出内容: 面积和轮廓长度\n");
 	for(unsigned  int i = 0; i< g_vContours.size(); i++ )
 	{
-		printf(" >通过m00计算出轮廓[%d]的面积: (M_00) = %.2f \n OpenCV函数计算出的面积=%.2f , 长度: %.2f \n\n", i, mu[i].m00, contourArea(g_vContours[i]), arcLength( g_vContours[i], true ) );
+		printf(" >通过m00计算出轮廓[%d]的面积: (M_00) = %.2f \n OpenCV函数计算出的面积=%.2f , 长度: %.2f \n\n", 
+			i, mu[i].m00, contourArea(g_vContours[i]), arcLength( g_vContours[i], true ) );
 		Scalar color = Scalar( g_rng.uniform(0, 255), g_rng.uniform(0,255), g_rng.uniform(0,255) );
 		drawContours( drawing, g_vContours, i, color, 2, 8, g_vHierarchy, 0, Point() );
 		circle( drawing, mc[i], 4, color, -1, 8, 0 );
